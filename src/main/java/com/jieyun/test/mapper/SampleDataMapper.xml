@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieyun.test.mapper.SampleDataMapper">
+
+    <!--批量插入采样原始数据-->
+    <insert id="batchInsertIntoSampleData">
+        INSERT INTO t_sample_data(id,drill_id,start_depth,end_depth,sample_type,sample_length,test_num)
+        VALUES
+        <foreach collection="list" item="list" index="index" separator=",">
+            ( REPLACE(UUID(),"-",""), #{list.drillId}, #{list.startDepth},#{list.endDepth}, #{list.sampleType}, #{list.sampleLength}, #{list.testNum}
+            )
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieyun.test.mapper.SingleHoleMapper">
+    <!-- 插入单孔数据-->
+    <insert id="batchInsertIntoDkData">
+        INSERT INTO t_sigle_hole (
+        id, project_id, hole_num, orif_elev, expl_depth, iwl_depth, fl_depth,
+        owork_data, obse_data, coor_x, coor_y, expl_well_depth, ep_type_code, mileage
+        )
+        VALUES
+        <foreach collection="list" item="list" index="index" separator=",">
+            (
+            REPLACE(UUID(),"-",""), #{list.projectId}, #{list.holeNum},  #{list.orifElev},
+            #{list.explDepth}, #{list.iwlDepth}, #{list.flDepth}, #{list.oworkData},
+            #{list.obseData}, #{list.coorX}, #{list.coorY}, #{list.explWellDepth},
+            #{list.epTypeCode}, #{list.mileage}
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        project_id = VALUES(project_id),hole_num = VALUES(hole_num), orif_elev = VALUES(orif_elev),
+        expl_depth = VALUES(expl_depth), iwl_depth = VALUES(iwl_depth), fl_depth = VALUES(fl_depth),
+        owork_data = VALUES(owork_data), obse_data = VALUES(obse_data), coor_x = VALUES(coor_x),
+        coor_y = VALUES(coor_y), expl_well_depth = VALUES(expl_well_depth), ep_type_code = VALUES(ep_type_code),
+        mileage = VALUES(mileage)
+    </insert>
+
+    <select id="selectSingleHoleNum" parameterType="java.lang.String"
+            resultType="com.jieyun.test.entity.dto.SingleHoleDto">
+		SELECT sh.hole_num AS holeNum,p.local_code AS localCode, p.id AS pId ,sh.project_id AS sPId
+		FROM  t_sigle_hole sh
+		LEFT JOIN t_project p
+		ON sh.project_id = p.id
+		WHERE p.local_code = #{projectNum}
+		AND sh.del_flag != '1';
+	</select>
+
+    <select id="selectProjectIdByProjectNum" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT distinct sh.id AS sPId
+		FROM  t_project sh
+		WHERE sh.local_code = #{projectNum}
+		AND sh.del_flag != '1';
+	</select>
+
+    <!-- 查工程下孔对应的编码 -->
+    <select id="selectDrillIdByHoleNum" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT id FROM t_sigle_hole
+		WHERE hole_num = #{holeNum} AND project_id = #{projectNum}
+	</select>
+
+</mapper>

@@ -42,7 +42,7 @@ public class Base64EncoderDemo {
                 "习近平在庆祝澳门回归祖国20周年大会暨澳门特别行政区第五届政府就职典礼上的讲话中说，澳门回归祖国20年来取得的成就举世瞩目。澳门地方虽小，但在“一国两制”实践中作用独特。我们坚信，包括港澳同胞在内的中国人民完全有智慧、有能力把“一国两制”实践发展得更好，把“一国两制”制度体系完善得更好，把特别行政区治理得更好。中华民族伟大复兴的前进步伐势不可挡，香港、澳门与祖国内地同发展、共繁荣的道路必将越走越宽广！\n" +
                 "\n" +
                 "深情关怀，情暖濠江。澳门同胞将牢记习近平主席的谆谆话语，在“爱国爱澳”“一国两制”的道路上笃定前行。";
-        String planText =  s.replaceAll("\n","");
+        String planText = s.replaceAll("\n", "");
         String encoderBase = Base64Utils.getEncoder(planText);
         String decoderBase = Base64Utils.getDecoder(encoderBase);
 

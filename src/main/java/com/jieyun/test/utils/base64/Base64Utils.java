@@ -6,6 +6,7 @@ import org.springframework.util.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
+
 /**
  * Base64加密解密工具类
  *

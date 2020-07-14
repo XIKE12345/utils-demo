@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieyun.test.mapper.TCdzhdcDataMapper">
+    <!--批量添加场地综合原始数据-->
+    <insert id="batchInsertAreaMultipleData">
+        INSERT INTO t_cdzhdc_data(id,project_id,sequ_num,level_num,grou_code,grou_name,geo_origin,geo_age,bear_capacity,
+        comp_model,unit_weight,stratum_type,first_qsk,frist_qpk,second_qsk,second_qpk,soil_type,tcop,dcorgs,dcorge,
+        color,humidity,state_density,coercibility,dilatance,gloss_reaction,dry_strength,tenacity,inclusion,
+        rock_hardness,rock_integrity,rock_strc_type,other_rock_desc)
+        VALUES
+        <foreach collection="list" item="list" index="index" separator=",">
+            ( REPLACE(UUID(),"-",""),
+            #{list.projectId},#{list.sequNum},#{list.levelNum},#{list.grouCode},#{list.grouName},
+            #{list.geoOrigin},#{list.geoAge},#{list.bearCapacity},#{list.compModel},#{list.unitWeight},
+            #{list.stratumType},#{list.firstQsk},#{list.fristQpk}, #{list.secondQsk},
+            #{list.secondQpk},#{list.soilType},#{list.tcop},#{list.dcorgs},
+            #{list.dcorge},#{list.color},#{list.humidity},#{list.stateDensity},#{list.coercibility},
+            #{list.dilatance},#{list.glossReaction},#{list.dryStrength},#{list.tenacity},#{list.inclusion},
+            #{list.rockHardness},#{list.rockIntegrity},#{list.rockStrcType},#{list.otherRockDesc}
+            )
+        </foreach>
+    </insert>
+</mapper>

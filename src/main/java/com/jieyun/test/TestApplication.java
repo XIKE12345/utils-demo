@@ -3,6 +3,9 @@ package com.jieyun.test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author huike
+ */
 @SpringBootApplication
 public class TestApplication {
 

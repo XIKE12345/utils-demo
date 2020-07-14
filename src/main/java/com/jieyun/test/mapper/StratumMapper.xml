@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieyun.test.mapper.StratumMapper">
+
+    <!--插入地层原始数据-->
+    <insert id="batchInsertStratumOrgData">
+        INSERT INTO t_stratum(id,drill_id,lelev_num,rock_bottom_depth,rock_code,rock_dip_angle)
+        VALUES
+        <foreach collection="list" item="list" index="index" separator=",">
+            ( REPLACE(UUID(),"-",""), #{list.drillId},#{list.lelevNum},
+            #{list.rockBottomDepth} ,#{list.rockCode},#{list.rockDipAngle})
+        </foreach>
+    </insert>
+</mapper>
