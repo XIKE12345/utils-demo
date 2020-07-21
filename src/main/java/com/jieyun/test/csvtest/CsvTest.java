@@ -12,10 +12,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author huike
+ * CSV文件解析
+ */
 public class CsvTest {
     public static void main(String[] args) throws IOException {
-//        String url = "/Users/huike/Downloads/testcsv.csv";
-//        String url = "/Users/huike/IdeaProjects/test/src/main/resources/unzip/可一书店/DK.csv";
         String url = "/Users/huike/Desktop/DK.csv";
         List<Object> objects = readFile(url);
         System.out.println(objects);
@@ -42,7 +44,7 @@ public class CsvTest {
             // 此处的string[] 代表的是对应的实体类的字段,(按照csv文件的顺序对应字段,感觉如果顺序一样可以用反射来做)
 //            columns = new String[] { "test1", "test2" };
             columns = new String[]{"holeNum", "holeHigh", "holeDeep", "startWaterLine", "stableWaterLine", "outDate",
-            "viewDate", "coordinateX", "coordinateY", "wellDeep", "exploreSiteTypeCode"};
+                    "viewDate", "coordinateX", "coordinateY", "wellDeep", "exploreSiteTypeCode"};
 
             // 映射字段放进处理的类
             start.setColumnMapping(columns);

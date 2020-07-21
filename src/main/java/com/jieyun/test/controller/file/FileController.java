@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * @author huike
+ * zip文件的上传解析
  */
 @RestController
 public class FileController {
