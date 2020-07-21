@@ -1,5 +1,6 @@
 package com.jieyun.test.entity.common;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
 
 /**
@@ -12,8 +13,12 @@ import lombok.Data;
  **/
 @Data
 public class StudentDo {
+    @ExcelProperty(index = 0)
     private int id;
+    @ExcelProperty(index = 1)
     private String stuName;
+    @ExcelProperty(index = 2)
     private String stuGender;
+    @ExcelProperty(index = 3)
     private int stuAge;
 }
